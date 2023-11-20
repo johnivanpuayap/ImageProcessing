@@ -45,6 +45,8 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.imageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.abootToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.madeByJohnIvanPuayapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pbLoaded)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbProcessed)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -75,7 +77,8 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.activity1ToolStripMenuItem,
-            this.imageToolStripMenuItem});
+            this.imageToolStripMenuItem,
+            this.abootToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1182, 28);
@@ -197,6 +200,22 @@
             this.saveImageToolStripMenuItem.Text = "Save Image";
             this.saveImageToolStripMenuItem.Click += new System.EventHandler(this.saveImageToolStripMenuItem_Click);
             // 
+            // abootToolStripMenuItem
+            // 
+            this.abootToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.madeByJohnIvanPuayapToolStripMenuItem});
+            this.abootToolStripMenuItem.Name = "abootToolStripMenuItem";
+            this.abootToolStripMenuItem.Size = new System.Drawing.Size(64, 24);
+            this.abootToolStripMenuItem.Text = "About";
+            // 
+            // madeByJohnIvanPuayapToolStripMenuItem
+            // 
+            this.madeByJohnIvanPuayapToolStripMenuItem.Enabled = false;
+            this.madeByJohnIvanPuayapToolStripMenuItem.Name = "madeByJohnIvanPuayapToolStripMenuItem";
+            this.madeByJohnIvanPuayapToolStripMenuItem.Size = new System.Drawing.Size(475, 26);
+            this.madeByJohnIvanPuayapToolStripMenuItem.Text = "Made by John Ivan Puayap for CS345 Intelligent Systems 1";
+            this.madeByJohnIvanPuayapToolStripMenuItem.Click += new System.EventHandler(this.madeByJohnIvanPuayapToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -238,6 +257,8 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.ToolStripMenuItem imageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveImageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem abootToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem madeByJohnIvanPuayapToolStripMenuItem;
     }
 }
 

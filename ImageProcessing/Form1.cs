@@ -148,5 +148,10 @@ namespace ImageProcessing
                 MessageBox.Show("Image saved successfully.");
             }
         }
+
+        private void madeByJohnIvanPuayapToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
