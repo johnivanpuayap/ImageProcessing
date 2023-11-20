@@ -14,18 +14,15 @@ namespace ImageProcessing
     {
 
 
-        
+        Bitmap loadedImage;
+
         public Form1()
         {
             InitializeComponent();
         }
 
-        Image loadedImage;
-
         private void openFileToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            
-            
+        {   
             openFileDialog1.Title = "Choose an image";
 
             openFileDialog1.InitialDirectory = @"C:\";
@@ -40,15 +37,29 @@ namespace ImageProcessing
                 // Get the selected file's path
                 string selectedFilePath = openFileDialog1.FileName;
 
-                loadedImage = Image.FromFile(selectedFilePath);
+                loadedImage = new Bitmap(selectedFilePath);
 
                 // Display the Image File
-                Image scaledImage = ScaleImage
+                Bitmap scaledImage = ImageProcessor.ScaleImage(loadedImage, 500, 500);
                 pbLoaded.Image = scaledImage;
 
                 // enable the Activity 1 Strip Menu Item
                 activity1ToolStripMenuItem.Enabled = true;
             }
+        }
+
+        private void basicCopyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            pbProcessed.Visible = true;
+            lblProcessed.Visible = true;
+
+            Bitmap processedImage = ImageProcessor.BasicCopy(loadedImage);
+
+            Bitmap scaledProcessedImage = ImageProcessor.ScaleImage(loadedImage, 500, 500);
+
+            pbProcessed.Image = scaledProcessedImage;
+            lblProcessed.Text = "Basic Copy of Loaded Image";
         }
     }
 }
