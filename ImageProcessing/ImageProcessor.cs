@@ -120,5 +120,36 @@ namespace ImageProcessing
 
             return processed;
         }
+
+        public static Bitmap ApplySepia(Bitmap inputImage)
+        {
+            Bitmap processedImage = new Bitmap(inputImage.Width, inputImage.Height);
+
+            for (int i = 0; i < inputImage.Width; i++)
+            {
+                for (int j = 0; j < inputImage.Height; j++)
+                {
+                    Color pixel = inputImage.GetPixel(i, j);
+
+                    int originalR = pixel.R;
+                    int originalG = pixel.G;
+                    int originalB = pixel.B;
+
+                    // Calculate sepia values
+                    int sepiaR = (int)(0.393 * originalR + 0.769 * originalG + 0.189 * originalB);
+                    int sepiaG = (int)(0.349 * originalR + 0.686 * originalG + 0.168 * originalB);
+                    int sepiaB = (int)(0.272 * originalR + 0.534 * originalG + 0.131 * originalB);
+
+                    // Ensure sepia values are within the valid range [0, 255]
+                    sepiaR = Math.Max(0, Math.Min(255, sepiaR));
+                    sepiaG = Math.Max(0, Math.Min(255, sepiaG));
+                    sepiaB = Math.Max(0, Math.Min(255, sepiaB));
+
+                    processedImage.SetPixel(i, j, Color.FromArgb(sepiaR, sepiaG, sepiaB));
+                }
+            }
+
+            return processedImage;
+        }
     }
 }
