@@ -102,5 +102,23 @@ namespace ImageProcessing
                 pbLoaded.Image = scaledImage;
             }
         }
+
+        private void inverseImageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            pbProcessed.Visible = true;
+            lblProcessed.Visible = true;
+
+            processedImage = ImageProcessor.InvertImage(loadedImage);
+
+            Bitmap scaledProcessedImage = ImageProcessor.ScaleImage(processedImage, 500, 500);
+
+            pbProcessed.Image = scaledProcessedImage;
+            lblProcessed.Text = "Inverted Image of Loaded Image";
+        }
+
+        private void histogramToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

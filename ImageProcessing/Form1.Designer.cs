@@ -132,13 +132,15 @@
             // 
             this.inverseImageToolStripMenuItem.Name = "inverseImageToolStripMenuItem";
             this.inverseImageToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.inverseImageToolStripMenuItem.Text = "Inverse Image";
+            this.inverseImageToolStripMenuItem.Text = "Invert";
+            this.inverseImageToolStripMenuItem.Click += new System.EventHandler(this.inverseImageToolStripMenuItem_Click);
             // 
             // histogramToolStripMenuItem
             // 
             this.histogramToolStripMenuItem.Name = "histogramToolStripMenuItem";
             this.histogramToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.histogramToolStripMenuItem.Text = "Histogram";
+            this.histogramToolStripMenuItem.Click += new System.EventHandler(this.histogramToolStripMenuItem_Click);
             // 
             // sepiaToolStripMenuItem
             // 

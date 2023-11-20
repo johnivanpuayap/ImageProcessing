@@ -66,5 +66,59 @@ namespace ImageProcessing
             }
             return processed;
         }
+
+        public static Bitmap InvertImage(Bitmap loaded)
+        {
+            Color pixel;
+            Bitmap processed = new Bitmap(loaded.Width, loaded.Height);
+            for (int i = 0; i < loaded.Width; i++)
+            {
+                for (int j = 0; j < loaded.Height; j++)
+                {
+                    pixel = loaded.GetPixel(i, j);
+                    processed.SetPixel(i, j, Color.FromArgb(255 - pixel.R, 255 - pixel.G, 255 - pixel.B));
+                }
+            }
+            
+            return processed;
+        }
+
+        public static Bitmap Histogram(Bitmap loaded)
+        {
+            // Convert loaded Image to Gray
+            Bitmap loadedGray = GrayScale(loaded);
+            Color pixel;
+            int[] histogramData = new int[256]; // array from 0 to 255
+
+            for (int x = 0; x < loadedGray.Width; x++)
+            {
+                for (int y = 0; y < loadedGray.Height; y++)
+                {
+                    pixel = loadedGray.GetPixel(x, y);
+                    histogramData[pixel.R]++; // can be any color property r,g or b
+                }
+            }
+
+            // Creating a bitmap with white background
+            Bitmap processed = new Bitmap(256, 800);
+            for (int x = 0; x < 256; x++)
+            {
+                for (int y = 0; y < 800; y++)
+                {
+                    processed.SetPixel(x, y, Color.White);
+                }
+            }
+
+            // Plotting points based on histogramData
+            for (int x = 0; x < 256; x++)
+            {
+                for (int y = 0; y < Math.Min(histogramData[x] / 5, processed.Height - 1); y++)
+                {
+                    processed.SetPixel(x, (processed.Height - 1) - y, Color.Black);
+                }
+            }
+
+            return processed;
+        }
     }
 }
