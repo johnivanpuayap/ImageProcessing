@@ -31,17 +31,17 @@
             this.pbLoaded = new System.Windows.Forms.PictureBox();
             this.pbProcessed = new System.Windows.Forms.PictureBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.activity1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.basicCopyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.grayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.label1 = new System.Windows.Forms.Label();
-            this.lblProcessed = new System.Windows.Forms.Label();
-            this.inverseImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.histogramToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sepiaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changeFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.activity1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.basicCopyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.grayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.inverseImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.histogramToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sepiaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblProcessed = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.pbLoaded)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbProcessed)).BeginInit();
@@ -77,6 +77,29 @@
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openFileToolStripMenuItem,
+            this.changeFileToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 24);
+            this.fileToolStripMenuItem.Text = "File";
+            // 
+            // openFileToolStripMenuItem
+            // 
+            this.openFileToolStripMenuItem.Name = "openFileToolStripMenuItem";
+            this.openFileToolStripMenuItem.Size = new System.Drawing.Size(169, 26);
+            this.openFileToolStripMenuItem.Text = "Open File";
+            this.openFileToolStripMenuItem.Click += new System.EventHandler(this.openFileToolStripMenuItem_Click);
+            // 
+            // changeFileToolStripMenuItem
+            // 
+            this.changeFileToolStripMenuItem.Name = "changeFileToolStripMenuItem";
+            this.changeFileToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.changeFileToolStripMenuItem.Text = "Change File";
+            this.changeFileToolStripMenuItem.Click += new System.EventHandler(this.changeFileToolStripMenuItem_Click);
+            // 
             // activity1ToolStripMenuItem
             // 
             this.activity1ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -103,6 +126,25 @@
             this.grayToolStripMenuItem.Name = "grayToolStripMenuItem";
             this.grayToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.grayToolStripMenuItem.Text = "Gray Scale";
+            this.grayToolStripMenuItem.Click += new System.EventHandler(this.grayToolStripMenuItem_Click);
+            // 
+            // inverseImageToolStripMenuItem
+            // 
+            this.inverseImageToolStripMenuItem.Name = "inverseImageToolStripMenuItem";
+            this.inverseImageToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.inverseImageToolStripMenuItem.Text = "Inverse Image";
+            // 
+            // histogramToolStripMenuItem
+            // 
+            this.histogramToolStripMenuItem.Name = "histogramToolStripMenuItem";
+            this.histogramToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.histogramToolStripMenuItem.Text = "Histogram";
+            // 
+            // sepiaToolStripMenuItem
+            // 
+            this.sepiaToolStripMenuItem.Name = "sepiaToolStripMenuItem";
+            this.sepiaToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.sepiaToolStripMenuItem.Text = "Sepia";
             // 
             // label1
             // 
@@ -124,46 +166,6 @@
             this.lblProcessed.TabIndex = 4;
             this.lblProcessed.Text = "Processed Image";
             this.lblProcessed.Visible = false;
-            // 
-            // inverseImageToolStripMenuItem
-            // 
-            this.inverseImageToolStripMenuItem.Name = "inverseImageToolStripMenuItem";
-            this.inverseImageToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.inverseImageToolStripMenuItem.Text = "Inverse Image";
-            // 
-            // histogramToolStripMenuItem
-            // 
-            this.histogramToolStripMenuItem.Name = "histogramToolStripMenuItem";
-            this.histogramToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.histogramToolStripMenuItem.Text = "Histogram";
-            // 
-            // sepiaToolStripMenuItem
-            // 
-            this.sepiaToolStripMenuItem.Name = "sepiaToolStripMenuItem";
-            this.sepiaToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.sepiaToolStripMenuItem.Text = "Sepia";
-            // 
-            // fileToolStripMenuItem
-            // 
-            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.openFileToolStripMenuItem,
-            this.changeFileToolStripMenuItem});
-            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 26);
-            this.fileToolStripMenuItem.Text = "File";
-            // 
-            // openFileToolStripMenuItem
-            // 
-            this.openFileToolStripMenuItem.Name = "openFileToolStripMenuItem";
-            this.openFileToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.openFileToolStripMenuItem.Text = "Open File";
-            this.openFileToolStripMenuItem.Click += new System.EventHandler(this.openFileToolStripMenuItem_Click);
-            // 
-            // changeFileToolStripMenuItem
-            // 
-            this.changeFileToolStripMenuItem.Name = "changeFileToolStripMenuItem";
-            this.changeFileToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.changeFileToolStripMenuItem.Text = "Change File";
             // 
             // openFileDialog1
             // 

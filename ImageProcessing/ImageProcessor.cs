@@ -48,5 +48,23 @@ namespace ImageProcessing
 
             return processed;
         }
+
+        public static Bitmap GrayScale(Bitmap loaded)
+        {
+            Bitmap processed = new Bitmap(loaded.Width, loaded.Height);
+            Color pixel;
+            byte gray;
+            processed = new Bitmap(loaded.Width, loaded.Height);
+            for (int i = 0; i < loaded.Width; i++)
+            {
+                for (int j = 0; j < loaded.Height; j++)
+                {
+                    pixel = loaded.GetPixel(i, j);
+                    gray = (byte)((pixel.R + pixel.G + pixel.B) / 3);
+                    processed.SetPixel(i, j, Color.FromArgb(gray, gray, gray));
+                }
+            }
+            return processed;
+        }
     }
 }
