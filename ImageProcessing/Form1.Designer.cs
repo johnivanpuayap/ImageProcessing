@@ -40,7 +40,7 @@
             this.inverseImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.histogramToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sepiaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblLoaded = new System.Windows.Forms.Label();
             this.lblProcessed = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.pbLoaded)).BeginInit();
@@ -89,12 +89,13 @@
             // openFileToolStripMenuItem
             // 
             this.openFileToolStripMenuItem.Name = "openFileToolStripMenuItem";
-            this.openFileToolStripMenuItem.Size = new System.Drawing.Size(169, 26);
+            this.openFileToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.openFileToolStripMenuItem.Text = "Open File";
             this.openFileToolStripMenuItem.Click += new System.EventHandler(this.openFileToolStripMenuItem_Click);
             // 
             // changeFileToolStripMenuItem
             // 
+            this.changeFileToolStripMenuItem.Enabled = false;
             this.changeFileToolStripMenuItem.Name = "changeFileToolStripMenuItem";
             this.changeFileToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.changeFileToolStripMenuItem.Text = "Change File";
@@ -148,15 +149,16 @@
             this.sepiaToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.sepiaToolStripMenuItem.Text = "Sepia";
             // 
-            // label1
+            // lblLoaded
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(242, 563);
-            this.label1.Name = "label1";
-            this.label1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label1.Size = new System.Drawing.Size(94, 16);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Original Image";
+            this.lblLoaded.AutoSize = true;
+            this.lblLoaded.Location = new System.Drawing.Point(242, 563);
+            this.lblLoaded.Name = "lblLoaded";
+            this.lblLoaded.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.lblLoaded.Size = new System.Drawing.Size(94, 16);
+            this.lblLoaded.TabIndex = 3;
+            this.lblLoaded.Text = "Original Image";
+            this.lblLoaded.Visible = false;
             // 
             // lblProcessed
             // 
@@ -179,7 +181,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1182, 653);
             this.Controls.Add(this.lblProcessed);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblLoaded);
             this.Controls.Add(this.pbProcessed);
             this.Controls.Add(this.pbLoaded);
             this.Controls.Add(this.menuStrip1);
@@ -206,7 +208,7 @@
         private System.Windows.Forms.ToolStripMenuItem inverseImageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem histogramToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sepiaToolStripMenuItem;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblLoaded;
         private System.Windows.Forms.Label lblProcessed;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openFileToolStripMenuItem;

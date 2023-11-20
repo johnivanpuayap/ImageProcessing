@@ -114,7 +114,7 @@ namespace ImageProcessing
             {
                 for (int y = 0; y < Math.Min(histogramData[x] / 5, processed.Height - 1); y++)
                 {
-                    processed.SetPixel(x, (processed.Height - 1) - y, Color.Black);
+                    processed.SetPixel(x, (processed.Height - 1) - y, Color.FromArgb(100, 100, 100));
                 }
             }
 

@@ -41,38 +41,23 @@ namespace ImageProcessing
                 loadedImage = new Bitmap(selectedFilePath);
 
                 // Display the Image File
-                Bitmap scaledImage = ImageProcessor.ScaleImage(loadedImage, 500, 500);
-                pbLoaded.Image = scaledImage;
+                if (loadedImage.Width > 500 || loadedImage.Height > 500)
+                {
+                    // Scale the image only if its size is greater than 500x500
+                    Bitmap scaledImage = ImageProcessor.ScaleImage(loadedImage, 500, 500);
+                    pbLoaded.Image = scaledImage;
+                }
+                else
+                {
+                    // If the image is smaller or equal to 500x500, use the original processed image
+                    pbLoaded.Image = loadedImage;
+                }
 
-                // enable the Activity 1 Strip Menu Item
+                // enable the Activity 1 Strip Menu Item and change Image
+                lblLoaded.Enabled = true;
                 activity1ToolStripMenuItem.Enabled = true;
+                changeFileToolStripMenuItem.Enabled = true;
             }
-        }
-
-        private void basicCopyToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            pbProcessed.Visible = true;
-            lblProcessed.Visible = true;
-
-            processedImage = ImageProcessor.BasicCopy(loadedImage);
-
-            Bitmap scaledProcessedImage = ImageProcessor.ScaleImage(loadedImage, 500, 500);
-
-            pbProcessed.Image = scaledProcessedImage;
-            lblProcessed.Text = "Basic Copy of Loaded Image";
-        }
-
-        private void grayToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            pbProcessed.Visible = true;
-            lblProcessed.Visible = true;
-
-            processedImage = ImageProcessor.GrayScale(loadedImage);
-
-            Bitmap scaledProcessedImage = ImageProcessor.ScaleImage(processedImage, 500, 500);
-
-            pbProcessed.Image = scaledProcessedImage;
-            lblProcessed.Text = "Gray Scale of Loaded Image";
         }
 
         private void changeFileToolStripMenuItem_Click(object sender, EventArgs e)
@@ -98,9 +83,61 @@ namespace ImageProcessing
                 loadedImage = new Bitmap(selectedFilePath);
 
                 // Display the new Image File
-                Bitmap scaledImage = ImageProcessor.ScaleImage(loadedImage, 500, 500);
-                pbLoaded.Image = scaledImage;
+                if (loadedImage.Width > 500 || loadedImage.Height > 500)
+                {
+                    // Scale the image only if its size is greater than 500x500
+                    Bitmap scaledImage = ImageProcessor.ScaleImage(loadedImage, 500, 500);
+                    pbLoaded.Image = scaledImage;
+                }
+                else
+                {
+                    // If the image is smaller or equal to 500x500, use the original processed image
+                    pbLoaded.Image = loadedImage;
+                }
             }
+        }
+
+        private void basicCopyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            pbProcessed.Visible = true;
+            lblProcessed.Visible = true;
+
+            processedImage = ImageProcessor.BasicCopy(loadedImage);
+
+            if (loadedImage.Width > 500 || loadedImage.Height > 500)
+            {
+                // Scale the image only if its size is greater than 500x500
+                Bitmap scaledProcessedImage = ImageProcessor.ScaleImage(processedImage, 500, 500);
+                pbProcessed.Image = scaledProcessedImage;
+            }
+            else
+            {
+                // If the image is smaller or equal to 500x500, use the original processed image
+                pbProcessed.Image = processedImage;
+            }
+            lblProcessed.Text = "Basic Copy of Loaded Image";
+        }
+
+        private void grayToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            pbProcessed.Visible = true;
+            lblProcessed.Visible = true;
+
+            processedImage = ImageProcessor.GrayScale(loadedImage);
+
+            if (loadedImage.Width > 500 || loadedImage.Height > 500)
+            {
+                // Scale the image only if its size is greater than 500x500
+                Bitmap scaledProcessedImage = ImageProcessor.ScaleImage(processedImage, 500, 500);
+                pbProcessed.Image = scaledProcessedImage;
+            }
+            else
+            {
+                // If the image is smaller or equal to 500x500, use the original processed image
+                pbProcessed.Image = processedImage;
+            }
+
+            lblProcessed.Text = "Gray Scale of Loaded Image";
         }
 
         private void inverseImageToolStripMenuItem_Click(object sender, EventArgs e)
@@ -110,15 +147,41 @@ namespace ImageProcessing
 
             processedImage = ImageProcessor.InvertImage(loadedImage);
 
-            Bitmap scaledProcessedImage = ImageProcessor.ScaleImage(processedImage, 500, 500);
+            if (loadedImage.Width > 500 || loadedImage.Height > 500)
+            {
+                // Scale the image only if its size is greater than 500x500
+                Bitmap scaledProcessedImage = ImageProcessor.ScaleImage(processedImage, 500, 500);
+                pbProcessed.Image = scaledProcessedImage;
+            }
+            else
+            {
+                // If the image is smaller or equal to 500x500, use the original processed image
+                pbProcessed.Image = processedImage;
+            }
 
-            pbProcessed.Image = scaledProcessedImage;
             lblProcessed.Text = "Inverted Image of Loaded Image";
         }
 
         private void histogramToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            pbProcessed.Visible = true;
+            lblProcessed.Visible = true;
 
+            processedImage = ImageProcessor.Histogram(loadedImage);
+
+            if (loadedImage.Width > 500 || loadedImage.Height > 500)
+            {
+                // Scale the image only if its size is greater than 500x500
+                Bitmap scaledProcessedImage = ImageProcessor.ScaleImage(processedImage, 500, 500);
+                pbProcessed.Image = scaledProcessedImage;
+            }
+            else
+            {
+                // If the image is smaller or equal to 500x500, use the original processed image
+                pbProcessed.Image = processedImage;
+            }
+
+            lblProcessed.Text = "Histogram of Loaded Image";
         }
     }
 }
