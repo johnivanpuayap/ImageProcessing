@@ -55,6 +55,7 @@
             this.pbLoaded.Location = new System.Drawing.Point(56, 48);
             this.pbLoaded.Name = "pbLoaded";
             this.pbLoaded.Size = new System.Drawing.Size(500, 500);
+            this.pbLoaded.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbLoaded.TabIndex = 0;
             this.pbLoaded.TabStop = false;
             // 
@@ -63,6 +64,7 @@
             this.pbProcessed.Location = new System.Drawing.Point(605, 48);
             this.pbProcessed.Name = "pbProcessed";
             this.pbProcessed.Size = new System.Drawing.Size(500, 500);
+            this.pbProcessed.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbProcessed.TabIndex = 1;
             this.pbProcessed.TabStop = false;
             this.pbProcessed.Visible = false;

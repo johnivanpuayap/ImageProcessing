@@ -43,17 +43,7 @@ namespace ImageProcessing
                 loadedImage = new Bitmap(selectedFilePath);
 
                 // Display the Image File
-                if (loadedImage.Width > 500 || loadedImage.Height > 500)
-                {
-                    // Scale the image only if its size is greater than 500x500
-                    Bitmap scaledImage = ImageProcessor.ScaleImage(loadedImage, 500, 500);
-                    pbLoaded.Image = scaledImage;
-                }
-                else
-                {
-                    // If the image is smaller or equal to 500x500, use the original processed image
-                    pbLoaded.Image = loadedImage;
-                }
+                pbLoaded.Image = loadedImage;
 
                 // enable the Activity 1 Strip Menu Item and change Image
                 lblLoaded.Visible = true;
@@ -86,17 +76,7 @@ namespace ImageProcessing
                 loadedImage = new Bitmap(selectedFilePath);
 
                 // Display the new Image File
-                if (loadedImage.Width > 500 || loadedImage.Height > 500)
-                {
-                    // Scale the image only if its size is greater than 500x500
-                    Bitmap scaledImage = ImageProcessor.ScaleImage(loadedImage, 500, 500);
-                    pbLoaded.Image = scaledImage;
-                }
-                else
-                {
-                    // If the image is smaller or equal to 500x500, use the original processed image
-                    pbLoaded.Image = loadedImage;
-                }
+                pbLoaded.Image = loadedImage;
             }
         }
 
@@ -107,18 +87,7 @@ namespace ImageProcessing
             imageToolStripMenuItem.Enabled = true;
 
             processedImage = ImageProcessor.BasicCopy(loadedImage);
-
-            if (loadedImage.Width > 500 || loadedImage.Height > 500)
-            {
-                // Scale the image only if its size is greater than 500x500
-                Bitmap scaledProcessedImage = ImageProcessor.ScaleImage(processedImage, 500, 500);
-                pbProcessed.Image = scaledProcessedImage;
-            }
-            else
-            {
-                // If the image is smaller or equal to 500x500, use the original processed image
-                pbProcessed.Image = processedImage;
-            }
+            pbProcessed.Image = processedImage;
             lblProcessed.Text = "Basic Copy of Loaded Image";
         }
 
@@ -129,19 +98,7 @@ namespace ImageProcessing
             imageToolStripMenuItem.Enabled = true;
 
             processedImage = ImageProcessor.GrayScale(loadedImage);
-
-            if (loadedImage.Width > 500 || loadedImage.Height > 500)
-            {
-                // Scale the image only if its size is greater than 500x500
-                Bitmap scaledProcessedImage = ImageProcessor.ScaleImage(processedImage, 500, 500);
-                pbProcessed.Image = scaledProcessedImage;
-            }
-            else
-            {
-                // If the image is smaller or equal to 500x500, use the original processed image
-                pbProcessed.Image = processedImage;
-            }
-
+            pbProcessed.Image = processedImage;
             lblProcessed.Text = "Gray Scale of Loaded Image";
         }
 
@@ -152,19 +109,7 @@ namespace ImageProcessing
             imageToolStripMenuItem.Enabled = true;
 
             processedImage = ImageProcessor.InvertImage(loadedImage);
-
-            if (loadedImage.Width > 500 || loadedImage.Height > 500)
-            {
-                // Scale the image only if its size is greater than 500x500
-                Bitmap scaledProcessedImage = ImageProcessor.ScaleImage(processedImage, 500, 500);
-                pbProcessed.Image = scaledProcessedImage;
-            }
-            else
-            {
-                // If the image is smaller or equal to 500x500, use the original processed image
-                pbProcessed.Image = processedImage;
-            }
-
+            pbProcessed.Image = processedImage;
             lblProcessed.Text = "Inverted Image of Loaded Image";
         }
 
@@ -175,19 +120,7 @@ namespace ImageProcessing
             imageToolStripMenuItem.Enabled = true;
 
             processedImage = ImageProcessor.Histogram(loadedImage);
-
-            if (loadedImage.Width > 500 || loadedImage.Height > 500)
-            {
-                // Scale the image only if its size is greater than 500x500
-                Bitmap scaledProcessedImage = ImageProcessor.ScaleImage(processedImage, 500, 500);
-                pbProcessed.Image = scaledProcessedImage;
-            }
-            else
-            {
-                // If the image is smaller or equal to 500x500, use the original processed image
-                pbProcessed.Image = processedImage;
-            }
-
+            pbProcessed.Image = processedImage;
             lblProcessed.Text = "Histogram of Loaded Image";
         }
 
@@ -198,19 +131,7 @@ namespace ImageProcessing
             imageToolStripMenuItem.Enabled = true;
 
             processedImage = ImageProcessor.ApplySepia(loadedImage);
-
-            if (loadedImage.Width > 500 || loadedImage.Height > 500)
-            {
-                // Scale the image only if its size is greater than 500x500
-                Bitmap scaledProcessedImage = ImageProcessor.ScaleImage(processedImage, 500, 500);
-                pbProcessed.Image = scaledProcessedImage;
-            }
-            else
-            {
-                // If the image is smaller or equal to 500x500, use the original processed image
-                pbProcessed.Image = processedImage;
-            }
-
+            pbProcessed.Image = processedImage;
             lblProcessed.Text = "Loaded Image with Sepia Filter";
         }
 
