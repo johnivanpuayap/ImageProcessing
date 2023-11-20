@@ -43,6 +43,8 @@
             this.lblLoaded = new System.Windows.Forms.Label();
             this.lblProcessed = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.imageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pbLoaded)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbProcessed)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -58,7 +60,7 @@
             // 
             // pbProcessed
             // 
-            this.pbProcessed.Location = new System.Drawing.Point(629, 48);
+            this.pbProcessed.Location = new System.Drawing.Point(605, 48);
             this.pbProcessed.Name = "pbProcessed";
             this.pbProcessed.Size = new System.Drawing.Size(500, 500);
             this.pbProcessed.TabIndex = 1;
@@ -70,7 +72,8 @@
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
-            this.activity1ToolStripMenuItem});
+            this.activity1ToolStripMenuItem,
+            this.imageToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1182, 28);
@@ -153,7 +156,7 @@
             // lblLoaded
             // 
             this.lblLoaded.AutoSize = true;
-            this.lblLoaded.Location = new System.Drawing.Point(242, 563);
+            this.lblLoaded.Location = new System.Drawing.Point(225, 563);
             this.lblLoaded.Name = "lblLoaded";
             this.lblLoaded.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.lblLoaded.Size = new System.Drawing.Size(94, 16);
@@ -164,7 +167,7 @@
             // lblProcessed
             // 
             this.lblProcessed.AutoSize = true;
-            this.lblProcessed.Location = new System.Drawing.Point(844, 563);
+            this.lblProcessed.Location = new System.Drawing.Point(797, 563);
             this.lblProcessed.Name = "lblProcessed";
             this.lblProcessed.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.lblProcessed.Size = new System.Drawing.Size(114, 16);
@@ -175,6 +178,22 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // imageToolStripMenuItem
+            // 
+            this.imageToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.saveImageToolStripMenuItem});
+            this.imageToolStripMenuItem.Enabled = false;
+            this.imageToolStripMenuItem.Name = "imageToolStripMenuItem";
+            this.imageToolStripMenuItem.Size = new System.Drawing.Size(65, 24);
+            this.imageToolStripMenuItem.Text = "Image";
+            // 
+            // saveImageToolStripMenuItem
+            // 
+            this.saveImageToolStripMenuItem.Name = "saveImageToolStripMenuItem";
+            this.saveImageToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.saveImageToolStripMenuItem.Text = "Save Image";
+            this.saveImageToolStripMenuItem.Click += new System.EventHandler(this.saveImageToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -215,6 +234,8 @@
         private System.Windows.Forms.ToolStripMenuItem openFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem changeFileToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.ToolStripMenuItem imageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveImageToolStripMenuItem;
     }
 }
 

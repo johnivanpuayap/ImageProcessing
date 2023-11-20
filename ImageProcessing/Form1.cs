@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,8 +15,6 @@ namespace ImageProcessing
 {
     public partial class Form1 : Form
     {
-
-
         Bitmap loadedImage;
         Bitmap processedImage;
 
@@ -23,10 +24,11 @@ namespace ImageProcessing
         }
 
         private void openFileToolStripMenuItem_Click(object sender, EventArgs e)
-        {   
+        {
+            openFileToolStripMenuItem.Enabled = false;
             openFileDialog1.Title = "Choose an image";
 
-            openFileDialog1.InitialDirectory = @"C:\";
+            openFileDialog1.InitialDirectory = @"C:\Downloads";
 
             // add filter for files only
             openFileDialog1.Filter = "Image files (*.bmp;*.jpg;*.jpeg;*.gif;*.png)|*.bmp;*.jpg;*.jpeg;*.gif;*.png|All files (*.*)|*.*";
@@ -65,10 +67,11 @@ namespace ImageProcessing
             // Close the 2nd Picture Box and Label
             pbProcessed.Visible = false;
             lblProcessed.Visible = false;
+            imageToolStripMenuItem.Enabled = false;
 
             openFileDialog1.Title = "Choose an image";
 
-            openFileDialog1.InitialDirectory = @"C:\";
+            openFileDialog1.InitialDirectory = @"C:\Downloads";
 
             // add filter for files only
             openFileDialog1.Filter = "Image files (*.bmp;*.jpg;*.jpeg;*.gif;*.png)|*.bmp;*.jpg;*.jpeg;*.gif;*.png|All files (*.*)|*.*";
@@ -101,6 +104,7 @@ namespace ImageProcessing
         {
             pbProcessed.Visible = true;
             lblProcessed.Visible = true;
+            imageToolStripMenuItem.Enabled = true;
 
             processedImage = ImageProcessor.BasicCopy(loadedImage);
 
@@ -122,6 +126,7 @@ namespace ImageProcessing
         {
             pbProcessed.Visible = true;
             lblProcessed.Visible = true;
+            imageToolStripMenuItem.Enabled = true;
 
             processedImage = ImageProcessor.GrayScale(loadedImage);
 
@@ -144,6 +149,7 @@ namespace ImageProcessing
         {
             pbProcessed.Visible = true;
             lblProcessed.Visible = true;
+            imageToolStripMenuItem.Enabled = true;
 
             processedImage = ImageProcessor.InvertImage(loadedImage);
 
@@ -166,6 +172,7 @@ namespace ImageProcessing
         {
             pbProcessed.Visible = true;
             lblProcessed.Visible = true;
+            imageToolStripMenuItem.Enabled = true;
 
             processedImage = ImageProcessor.Histogram(loadedImage);
 
@@ -188,6 +195,7 @@ namespace ImageProcessing
         {
             pbProcessed.Visible = true;
             lblProcessed.Visible = true;
+            imageToolStripMenuItem.Enabled = true;
 
             processedImage = ImageProcessor.ApplySepia(loadedImage);
 
@@ -204,6 +212,20 @@ namespace ImageProcessing
             }
 
             lblProcessed.Text = "Loaded Image with Sepia Filter";
+        }
+
+        private void saveImageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "PNG files (*.png)|*.png|JPEG files (*.jpg)|*.jpg|Bitmap files (*.bmp)|*.bmp|All files (*.*)|*.*";
+            saveFileDialog.Title = "Save Processed Image";
+            saveFileDialog.ShowDialog();
+
+            if (saveFileDialog.FileName != "")
+            {
+                processedImage.Save(saveFileDialog.FileName, ImageFormat.Png);
+                MessageBox.Show("Image saved successfully.");
+            }
         }
     }
 }
