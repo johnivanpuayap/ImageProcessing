@@ -23,12 +23,17 @@ namespace ImageProcessing
         Bitmap imageC;
         Device[] webcams = DeviceManager.GetAllDevices();
         Device webcam;
+        private Timer greenScreenTimer;
 
         public Form1()
         {
             InitializeComponent();
             pnlOriginal.BringToFront();
             webcam = webcams[0];
+
+            greenScreenTimer = new Timer();
+            greenScreenTimer.Interval = 5000; // 5 seconds interval
+            greenScreenTimer.Tick += GreenScreenTimer_Tick;
         }
 
         private void openFileToolStripMenuItem_Click(object sender, EventArgs e)
@@ -191,26 +196,45 @@ namespace ImageProcessing
         {
             if (cbCamera.Checked == true)
             {
-                btnUploadImage.Enabled = false;
+                btnUploadBackground.Enabled = false;
                 cbFilter.Visible = true;
 
-                webcam.ShowWindow(pbSubtract1);
+                // Show the webcam preview
 
-                webcam.Sendmessage();
-
-                imageB = new Bitmap(Clipboard.GetImage());
-
-                imageB = ImageProcessor.ApplyGreenScreenEffect(ref imageB);
-
-                pbSubtract1.Image = imageB;
+                if (webcam != null)
+                {
+                    webcam.ShowWindow(pbSubtract2);
+                }
             }
             else
             {
-                btnUploadImage.Enabled = true;
-                webcam.Stop();
+                btnUploadBackground.Enabled = true;
+                if (webcam != null)
+                {
+                    webcam.Stop();
+                }
                 cbFilter.Visible = false;
             }
             
+        }
+
+        private void GreenScreenTimer_Tick(object sender, EventArgs e)
+        {
+            // Apply the green screen filter at every timer tick
+            ApplyGreenScreenFilter();
+        }
+
+        private void ApplyGreenScreenFilter()
+        {
+            // Capture the current webcam image to the clipboard
+            webcam.Sendmessage();
+
+            // Get the image from the clipboard and apply the green screen filter
+            imageB = new Bitmap(Clipboard.GetImage());
+            ImageProcessor.ApplyGreenScreenEffect(ref imageB);
+
+            // Display the modified image
+            pbSubtractOutput.Image = imageB;
         }
 
         private void btnUploadImage_Click(object sender, EventArgs e)
@@ -257,8 +281,21 @@ namespace ImageProcessing
 
         private void btnSubtract_Click(object sender, EventArgs e)
         {
-            imageC = ImageProcessor.Subtract(imageA, imageB);
-            pbSubtractOutput.Image = imageC;
+            if(imageA != null)
+                if(imageB != null)
+                {
+                    Bitmap imageC = ImageProcessor.Subtract(imageA, imageB);
+                    pbSubtractOutput.Image = imageC;
+                } else
+                {
+                    MessageBox.Show("Please upload a image B", "Missing Image B", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                }
+            else
+            {
+                MessageBox.Show("Please upload a background image", "Missing Image A", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
 
         private void cbFilter_CheckedChanged(object sender, EventArgs e)

@@ -53,6 +53,7 @@
             this.pbSubtract2 = new System.Windows.Forms.PictureBox();
             this.pbSubtractOutput = new System.Windows.Forms.PictureBox();
             this.pnlSubtract = new System.Windows.Forms.Panel();
+            this.cbFilter = new System.Windows.Forms.CheckBox();
             this.btnSubtract = new System.Windows.Forms.Button();
             this.btnUploadBackground = new System.Windows.Forms.Button();
             this.btnUploadImage = new System.Windows.Forms.Button();
@@ -63,7 +64,6 @@
             this.pnlOriginal = new System.Windows.Forms.Panel();
             this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
             this.openFileDialog3 = new System.Windows.Forms.OpenFileDialog();
-            this.cbFilter = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbLoaded)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbProcessed)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -300,6 +300,18 @@
             this.pnlSubtract.TabIndex = 8;
             this.pnlSubtract.Visible = false;
             // 
+            // cbFilter
+            // 
+            this.cbFilter.AutoSize = true;
+            this.cbFilter.Location = new System.Drawing.Point(882, 523);
+            this.cbFilter.Name = "cbFilter";
+            this.cbFilter.Size = new System.Drawing.Size(148, 20);
+            this.cbFilter.TabIndex = 17;
+            this.cbFilter.Text = "Apply Subtract Filter";
+            this.cbFilter.UseVisualStyleBackColor = true;
+            this.cbFilter.Visible = false;
+            this.cbFilter.CheckedChanged += new System.EventHandler(this.cbFilter_CheckedChanged);
+            // 
             // btnSubtract
             // 
             this.btnSubtract.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
@@ -362,7 +374,7 @@
             // cbCamera
             // 
             this.cbCamera.AutoSize = true;
-            this.cbCamera.Location = new System.Drawing.Point(155, 523);
+            this.cbCamera.Location = new System.Drawing.Point(530, 523);
             this.cbCamera.Name = "cbCamera";
             this.cbCamera.Size = new System.Drawing.Size(105, 20);
             this.cbCamera.TabIndex = 10;
@@ -388,18 +400,6 @@
             // openFileDialog3
             // 
             this.openFileDialog3.FileName = "openFileDialog3";
-            // 
-            // cbFilter
-            // 
-            this.cbFilter.AutoSize = true;
-            this.cbFilter.Location = new System.Drawing.Point(882, 523);
-            this.cbFilter.Name = "cbFilter";
-            this.cbFilter.Size = new System.Drawing.Size(148, 20);
-            this.cbFilter.TabIndex = 17;
-            this.cbFilter.Text = "Apply Subtract Filter";
-            this.cbFilter.UseVisualStyleBackColor = true;
-            this.cbFilter.Visible = false;
-            this.cbFilter.CheckedChanged += new System.EventHandler(this.cbFilter_CheckedChanged);
             // 
             // Form1
             // 
