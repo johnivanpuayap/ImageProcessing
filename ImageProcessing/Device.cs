@@ -115,7 +115,7 @@ namespace WebCamLib
             SendMessage(deviceHandle, WM_CAP_DRIVER_DISCONNECT, this.index, 0);
             DestroyWindow(deviceHandle);
         }
-        public void Sendmessage()
+        public void sendMessage()
         {
             SendMessage(deviceHandle, WM_CAP_EDIT_COPY, 0, 0);
         }

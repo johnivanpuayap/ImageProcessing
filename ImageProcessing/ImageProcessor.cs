@@ -8,6 +8,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace ImageProcessing
 {
@@ -154,11 +155,11 @@ namespace ImageProcessing
             return processedImage;
         }
 
-        public static Bitmap Subtract(Bitmap imageA, Bitmap imageB)
+        public static void Subtract(ref Bitmap imageA, ref Bitmap imageB, ref Bitmap imageC)
         {
-            Bitmap processedImage = new Bitmap(imageB.Width, imageB.Height);
+            imageC = new Bitmap(imageB.Width, imageB.Height);
             Color myGreen = Color.FromArgb(0, 0, 255);
-            int greygreen = (myGreen.R + myGreen.G + myGreen.B) / 3;
+            byte greygreen = (byte)((myGreen.R + myGreen.G + myGreen.B) / 3);
             int threshold = 5;
 
             for (int x = 0; x < imageB.Width; x++)
@@ -167,63 +168,11 @@ namespace ImageProcessing
                 {
                     Color pixel = imageB.GetPixel(x, y);
                     Color backpixel = imageA.GetPixel(x, y);
-                    int grey = (pixel.R + pixel.G + pixel.B) / 3;
+                    int grey = (byte)((pixel.R + pixel.G + pixel.B) / 3);
                     int subtractvalue = Math.Abs(grey - greygreen);
-                    processedImage.SetPixel(x, y, subtractvalue > threshold ? pixel : backpixel);
+                    imageC.SetPixel(x, y, subtractvalue > threshold ? pixel : backpixel);
                 }
             }
-
-            return processedImage;
-        }
-
-        public static void ApplyGreenScreenEffect(ref Bitmap loaded)
-        {
-            BitmapData bitmapData = loaded.LockBits(new Rectangle(0, 0, loaded.Width, loaded.Height), ImageLockMode.ReadWrite, loaded.PixelFormat);
-
-            int bytesPerPixel = Bitmap.GetPixelFormatSize(loaded.PixelFormat) / 8;
-            int byteCount = bitmapData.Stride * loaded.Height;
-            byte[] pixels = new byte[byteCount];
-            Marshal.Copy(bitmapData.Scan0, pixels, 0, pixels.Length);
-
-            Color chromaKeyColor = Color.FromArgb(0, 255, 0); // Green color
-            int tolerance = 100; // Adjust as needed
-
-            for (int y = 0; y < loaded.Height; y++)
-            {
-                for (int x = 0; x < loaded.Width; x++)
-                {
-                    int index = y * bitmapData.Stride + x * bytesPerPixel;
-
-                    byte blue = pixels[index];
-                    byte green = pixels[index + 1];
-                    byte red = pixels[index + 2];
-
-                    Color pixelColor = Color.FromArgb(red, green, blue);
-
-                    // Check if the pixel color is close to the chroma key color
-                    if (ColorDistance(pixelColor, chromaKeyColor) < tolerance)
-                    {
-                        // If close, set the pixel color to transparent
-                        pixels[index] = 0;     // Blue
-                        pixels[index + 1] = 0; // Green
-                        pixels[index + 2] = 0; // Red
-                        pixels[index + 3] = 0; // Alpha (transparency)
-                    }
-                    // You may want to adjust the else part based on your specific requirements
-                }
-            }
-
-            Marshal.Copy(pixels, 0, bitmapData.Scan0, pixels.Length);
-            loaded.UnlockBits(bitmapData);
-        }
-
-        private static int ColorDistance(Color c1, Color c2)
-        {
-            int rDiff = Math.Abs(c1.R - c2.R);
-            int gDiff = Math.Abs(c1.G - c2.G);
-            int bDiff = Math.Abs(c1.B - c2.B);
-
-            return rDiff + gDiff + bDiff;
         }
     }
 }
