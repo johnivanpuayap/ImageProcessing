@@ -32,7 +32,7 @@ namespace ImageProcessing
             webcam = webcams[0];
 
             cameraTimer = new Timer();
-            cameraTimer.Interval = 5000; // 5 seconds interval
+            cameraTimer.Interval = 500;
             cameraTimer.Tick += cameraTimer_Tick;
         }
 
@@ -157,8 +157,17 @@ namespace ImageProcessing
 
             if (saveFileDialog.FileName != "")
             {
-                processedImage.Save(saveFileDialog.FileName, ImageFormat.Png);
-                MessageBox.Show("Image saved successfully.");
+                if(pnlOriginal.Visible)
+                {
+                    processedImage.Save(saveFileDialog.FileName, ImageFormat.Png);
+                    MessageBox.Show("Processed Image saved successfully.");
+                }
+                else
+                {
+                    imageC.Save(saveFileDialog.FileName, ImageFormat.Png);
+                    MessageBox.Show("Image C saved successfully.");
+                }
+                
             }
         }
 
@@ -177,6 +186,7 @@ namespace ImageProcessing
                 pnlSubtract.Visible = true;
                 fileToolStripMenuItem.Enabled = false;
                 imageToolStripMenuItem.Enabled = true;
+                activity1ToolStripMenuItem.Enabled = false;
 
                 pnlSubtract.BringToFront(); // Bring the control to the front\
             }
@@ -187,6 +197,23 @@ namespace ImageProcessing
                 pnlSubtract.Visible = false;
                 fileToolStripMenuItem.Enabled = true;
                 imageToolStripMenuItem.Enabled = false;
+
+                if (loadedImage != null)
+                {
+                    activity1ToolStripMenuItem.Enabled = true;
+                    imageToolStripMenuItem.Enabled = true;
+                }
+                else{
+                    activity1ToolStripMenuItem.Enabled = false;
+                }
+
+                if (processedImage != null)
+                {
+                    imageToolStripMenuItem.Enabled = true;
+                } else
+                {
+                    imageToolStripMenuItem.Enabled = false;
+                }
                 
                 pnlOriginal.BringToFront();
             }
@@ -199,6 +226,7 @@ namespace ImageProcessing
                 btnUploadBackground.Enabled = false;
                 btnSubtract.Enabled = false;
                 cbFilter.Visible = true;
+
 
                 // Show the webcam preview
 
@@ -299,6 +327,7 @@ namespace ImageProcessing
             }
             else
             {
+                pbSubtractOutput.Image = null;
                 cameraTimer.Stop();
             }
         }
