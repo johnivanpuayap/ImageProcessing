@@ -63,6 +63,7 @@
             this.pnlOriginal = new System.Windows.Forms.Panel();
             this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
             this.openFileDialog3 = new System.Windows.Forms.OpenFileDialog();
+            this.cbFilter = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbLoaded)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbProcessed)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -207,7 +208,7 @@
             // useSubtractToolStripMenuItem
             // 
             this.useSubtractToolStripMenuItem.Name = "useSubtractToolStripMenuItem";
-            this.useSubtractToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.useSubtractToolStripMenuItem.Size = new System.Drawing.Size(171, 26);
             this.useSubtractToolStripMenuItem.Text = "Turn On/Off";
             this.useSubtractToolStripMenuItem.Click += new System.EventHandler(this.useSubtractToolStripMenuItem_Click);
             // 
@@ -282,6 +283,7 @@
             // 
             // pnlSubtract
             // 
+            this.pnlSubtract.Controls.Add(this.cbFilter);
             this.pnlSubtract.Controls.Add(this.pbSubtractOutput);
             this.pnlSubtract.Controls.Add(this.pbSubtract2);
             this.pnlSubtract.Controls.Add(this.pbSubtract1);
@@ -387,6 +389,18 @@
             // 
             this.openFileDialog3.FileName = "openFileDialog3";
             // 
+            // cbFilter
+            // 
+            this.cbFilter.AutoSize = true;
+            this.cbFilter.Location = new System.Drawing.Point(882, 523);
+            this.cbFilter.Name = "cbFilter";
+            this.cbFilter.Size = new System.Drawing.Size(148, 20);
+            this.cbFilter.TabIndex = 17;
+            this.cbFilter.Text = "Apply Subtract Filter";
+            this.cbFilter.UseVisualStyleBackColor = true;
+            this.cbFilter.Visible = false;
+            this.cbFilter.CheckedChanged += new System.EventHandler(this.cbFilter_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -451,6 +465,7 @@
         private System.Windows.Forms.Button btnUploadBackground;
         private System.Windows.Forms.OpenFileDialog openFileDialog2;
         private System.Windows.Forms.OpenFileDialog openFileDialog3;
+        private System.Windows.Forms.CheckBox cbFilter;
     }
 }
 

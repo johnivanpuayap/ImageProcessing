@@ -151,5 +151,27 @@ namespace ImageProcessing
 
             return processedImage;
         }
+
+        public static Bitmap Subtract(Bitmap imageA, Bitmap imageB)
+        {
+            Bitmap processedImage = new Bitmap(imageB.Width, imageB.Height);
+            Color myGreen = Color.FromArgb(0, 0, 255);
+            int greygreen = (myGreen.R + myGreen.G + myGreen.B) / 3;
+            int threshold = 5;
+
+            for (int x = 0; x < imageB.Width; x++)
+            {
+                for (int y = 0; y < imageB.Height; y++)
+                {
+                    Color pixel = imageB.GetPixel(x, y);
+                    Color backpixel = imageA.GetPixel(x, y);
+                    int grey = (pixel.R + pixel.G + pixel.B) / 3;
+                    int subtractvalue = Math.Abs(grey - greygreen);
+                    processedImage.SetPixel(x, y, subtractvalue > threshold ? pixel : backpixel);
+                }
+            }
+
+            return processedImage;
+        }
     }
 }

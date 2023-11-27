@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WebCamLib;
 
 namespace ImageProcessing
 {
@@ -20,11 +21,14 @@ namespace ImageProcessing
         Bitmap imageA;
         Bitmap imageB;
         Bitmap imageC;
+        Device[] webcams = DeviceManager.GetAllDevices();
+        Device camera;
 
         public Form1()
         {
             InitializeComponent();
             pnlOriginal.BringToFront();
+            camera = webcams[0];
         }
 
         private void openFileToolStripMenuItem_Click(object sender, EventArgs e)
@@ -188,10 +192,18 @@ namespace ImageProcessing
             if (cbCamera.Checked == true)
             {
                 btnUploadImage.Enabled = false;
+                cbFilter.Visible = true;
+                if (webcams.Length > 0)
+                {
+                    camera.ShowWindow(pbSubtract1);
+                }
+
             }
             else
             {
                 btnUploadImage.Enabled = true;
+                camera.Stop();
+                cbFilter.Visible = false;
             }
             
         }
@@ -240,7 +252,20 @@ namespace ImageProcessing
 
         private void btnSubtract_Click(object sender, EventArgs e)
         {
+            imageC = ImageProcessor.Subtract(imageA, imageB);
+            pbSubtractOutput.Image = imageC;
+        }
 
+        private void cbFilter_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbFilter.Checked == true)
+            {
+
+            }
+            else
+            {
+
+            }
         }
     }
 }
