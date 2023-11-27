@@ -22,13 +22,13 @@ namespace ImageProcessing
         Bitmap imageB;
         Bitmap imageC;
         Device[] webcams = DeviceManager.GetAllDevices();
-        Device camera;
+        Device webcam;
 
         public Form1()
         {
             InitializeComponent();
             pnlOriginal.BringToFront();
-            camera = webcams[0];
+            webcam = webcams[0];
         }
 
         private void openFileToolStripMenuItem_Click(object sender, EventArgs e)
@@ -193,16 +193,21 @@ namespace ImageProcessing
             {
                 btnUploadImage.Enabled = false;
                 cbFilter.Visible = true;
-                if (webcams.Length > 0)
-                {
-                    camera.ShowWindow(pbSubtract1);
-                }
 
+                webcam.ShowWindow(pbSubtract1);
+
+                webcam.Sendmessage();
+
+                imageB = new Bitmap(Clipboard.GetImage());
+
+                imageB = ImageProcessor.ApplyGreenScreenEffect(ref imageB);
+
+                pbSubtract1.Image = imageB;
             }
             else
             {
                 btnUploadImage.Enabled = true;
-                camera.Stop();
+                webcam.Stop();
                 cbFilter.Visible = false;
             }
             
@@ -260,6 +265,7 @@ namespace ImageProcessing
         {
             if (cbFilter.Checked == true)
             {
+                
 
             }
             else

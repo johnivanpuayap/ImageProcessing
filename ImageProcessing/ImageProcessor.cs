@@ -173,5 +173,39 @@ namespace ImageProcessing
 
             return processedImage;
         }
+
+        public static Bitmap ApplyGreenScreenEffect(ref Bitmap loaded, ref Bitmap )
+        {
+            Bitmap bitmap = new Bitmap(loaded);
+            Color chromaKeyColor = Color.FromArgb(0, 255, 0); // Green color
+            int tolerance = 100; // Adjust as needed
+
+            for (int x = 0; x < bitmap.Width; x++)
+            {
+                for (int y = 0; y < bitmap.Height; y++)
+                {
+                    Color pixelColor = bitmap.GetPixel(x, y);
+
+                    // Check if the pixel color is close to the chroma key color
+                    if (ColorDistance(pixelColor, chromaKeyColor) < tolerance)
+                    {
+                        // If close, set the pixel color to transparent
+                        bitmap.SetPixel(x, y, Color.Transparent);
+                    }
+                    // You may want to adjust the else part based on your specific requirements
+                }
+            }
+
+            return bitmap;
+        }
+
+        private static int ColorDistance(Color c1, Color c2)
+        {
+            int rDiff = Math.Abs(c1.R - c2.R);
+            int gDiff = Math.Abs(c1.G - c2.G);
+            int bDiff = Math.Abs(c1.B - c2.B);
+
+            return rDiff + gDiff + bDiff;
+        }
     }
 }
