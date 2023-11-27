@@ -17,10 +17,14 @@ namespace ImageProcessing
     {
         Bitmap loadedImage;
         Bitmap processedImage;
+        Bitmap imageA;
+        Bitmap imageB;
+        Bitmap imageC;
 
         public Form1()
         {
             InitializeComponent();
+            pnlOriginal.BringToFront();
         }
 
         private void openFileToolStripMenuItem_Click(object sender, EventArgs e)
@@ -150,6 +154,91 @@ namespace ImageProcessing
         }
 
         private void madeByJohnIvanPuayapToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void useSubtractToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            if (pnlOriginal.Visible)
+            {
+                // Turn on
+                pnlOriginal.Visible = false;
+                pnlSubtract.Visible = true;
+                fileToolStripMenuItem.Enabled = false;
+                imageToolStripMenuItem.Enabled = true;
+
+                pnlSubtract.BringToFront(); // Bring the control to the front\
+            }
+            else
+            {
+                // Turn off
+                pnlOriginal.Visible = true;
+                pnlSubtract.Visible = false;
+                fileToolStripMenuItem.Enabled = true;
+                imageToolStripMenuItem.Enabled = false;
+                
+                pnlOriginal.BringToFront();
+            }
+        }
+
+        private void cbCamera_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbCamera.Checked == true)
+            {
+                btnUploadImage.Enabled = false;
+            }
+            else
+            {
+                btnUploadImage.Enabled = true;
+            }
+            
+        }
+
+        private void btnUploadImage_Click(object sender, EventArgs e)
+        {
+            openFileDialog2.InitialDirectory = @"C:\Downloads";
+
+            // add filter for files only
+            openFileDialog2.Filter = "Image files (*.bmp;*.jpg;*.jpeg;*.gif;*.png)|*.bmp;*.jpg;*.jpeg;*.gif;*.png|All files (*.*)|*.*";
+
+
+            // Show the dialog and check if the user clicked OK
+            if (openFileDialog2.ShowDialog() == DialogResult.OK)
+            {
+                // Get the selected file's path
+                string selectedFilePath = openFileDialog2.FileName;
+
+                imageB = new Bitmap(selectedFilePath);
+
+                // Display the Image File
+                pbSubtract1.Image = imageB;
+            }
+        }
+
+        private void btnUploadBackground_Click(object sender, EventArgs e)
+        {
+            openFileDialog3.InitialDirectory = @"C:\Downloads";
+
+            // add filter for files only
+            openFileDialog3.Filter = "Image files (*.bmp;*.jpg;*.jpeg;*.gif;*.png)|*.bmp;*.jpg;*.jpeg;*.gif;*.png|All files (*.*)|*.*";
+
+
+            // Show the dialog and check if the user clicked OK
+            if (openFileDialog3.ShowDialog() == DialogResult.OK)
+            {
+                // Get the selected file's path
+                string selectedFilePath = openFileDialog3.FileName;
+
+                imageA = new Bitmap(selectedFilePath);
+
+                // Display the Image File
+                pbSubtract2.Image = imageA;
+            }
+        }
+
+        private void btnSubtract_Click(object sender, EventArgs e)
         {
 
         }
